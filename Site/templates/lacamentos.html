@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ultimos Lançamentos</h1>
+        <h2>Ultimos livros lançados para te fazer feliz!!</h2>
+        <div class="row">
+            <div class="col">
+                {% for livro in livros %}
+                    <a href="{{ url_for('mostrar_livro', id_livro=livro.id) }}"><img src="{{ url_for('static', filename='capas_livros/{}'.format(livro.foto_capa)) }}" class="img-radius mt-2 p-1" alt="User-Profile-Image" width="300"></a>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

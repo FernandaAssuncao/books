@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Usuarios</h1>
+        {% for usuario in usuarioss %}
+             <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+    <div class="col-xl-6 col-md-12">
+                                                    <div class="card user-card-full">
+                                                        <div class="row m-l-0 m-r-0">
+                                                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                                                <div class="card-block text-center text-white">
+                                                                    <div class="m-b-25">
+                                                                        <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(usuario.foto_perfil)) }}" class="img-radius" alt="User-Profile-Image" width="120">
+                                                                    </div>
+                                                                    <h6 class="f-w-600">{{ usuario.username }}</h6>
+
+                                                                    <a href="{{ url_for('editar_perfil') }}"><button type="button" class="btn btn-outline-danger">Editar perfil</button></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="card-block">
+                                                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Meu perfil</h6>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-10">
+                                                                            <p class="m-b-10 f-w-600">Email</p>
+                                                                            <h6 class="text-muted f-w-400">{{ usuario.email }}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Informações do Usuario</h6>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <p class="m-b-10 f-w-600">Favoritos</p>
+                                                                            {% if usuario.favoritos != 'nao informado' %}
+                                                                                <h6 class="text-muted f-w-400">{{ usuario.favoritos.count(';') + 1 }}</h6>
+                                                                            {% else %}
+                                                                                <h6 class="text-muted f-w-400">{{ usuario.favoritos.count(';') }}</h6>
+                                                                            {% endif %}
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 </div>
+                                                    </div>
+                                                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

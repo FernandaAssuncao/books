@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="row border p-4 mt-2 estilo">
+        <div class="col-3">
+            <img src="{{ url_for('static', filename='capas_livros/{}'.format(livro.foto_capa)) }}" class="img-radius mt-2 p-1" alt="User-Profile-Image" width="200">
+            <strong class="cor2">{{ livro.categoria }}</strong>
+        </div>
+        <div class="col-9">
+            {% if livro.nome in current_user.favoritos %}
+                <h2>{{ livro.nome }} <a href="{{ url_for('remover', id_livro=livro.id) }}"><button type="button" class="btn btn-outline-danger">Remover de Favoritos X</button></a></h2>
+            {% else %}
+                <h2>{{ livro.nome }} <a href="{{ url_for('adicionar', id_livro=livro.id) }}"><button type="button" class="btn btn-outline-warning">Adicionar aos Favoristos ☆</button></a></h2>
+            {% endif %}
+            <p class="cor2">{{ livro.sobre }}</p>
+        </div>
+    </div>
+
+{% endblock %}

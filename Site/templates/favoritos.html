@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Favoritos de {{ current_user.username }}</h1>
+        <h2>Seus livros favoritos em um só lugar, desfrute do poder da leitura aqui.</h2>
+        {% if current_user.favoritos != 'não informado' %}
+            {% for favorito in favoritos %}
+                <div class="row border p-4 mt-2 estilo">
+                    <div class="col-3">
+                        <img src="{{ url_for('static', filename='capas_livros/{}'.format(favorito.foto_capa)) }}" class="img-radius mt-2 p-1" alt="User-Profile-Image" width="200">
+                        <strong class="cor2">{{ favorito.categoria }}</strong>
+                    </div>
+                    <div class="col-9">
+                        <h2>{{ favorito.nome }} <a href="{{ url_for('remover', id_livro=favorito.id) }}"><button type="button" class="btn btn-outline-danger">Remover de Favoritos X</button></a></h2>
+                        <p class="cor2">{{ favorito.sobre }} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
